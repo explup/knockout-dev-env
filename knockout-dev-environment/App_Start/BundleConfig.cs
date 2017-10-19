@@ -26,6 +26,18 @@ namespace knockout_dev_environment
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/ClientApp/dist/css").Include(
+                   "~/ClientApp/dist/vendor.bundle.css",
+                   "~/ClientApp/dist/app.bundle.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                       "~/ClientApp/dist/app.bundle.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/vendor").Include(
+                       "~/ClientApp/dist/vendor.bundle.js"));
+
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }
