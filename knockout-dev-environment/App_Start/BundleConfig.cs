@@ -29,10 +29,12 @@ namespace knockout_dev_environment
 
             bundles.Add(new StyleBundle("~/ClientApp/dist/css").Include(
                    "~/ClientApp/dist/vendor.bundle.css",
-                   "~/ClientApp/dist/app.bundle.css"));
+                   "~/ClientApp/dist/app.bundle.css",
+                   "~/ClientApp/dist/knockoutapp.bundle.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                       "~/ClientApp/dist/app.bundle.js"));
+                       "~/ClientApp/dist/app.bundle.js",
+                       "~/ClientApp/dist/knockoutapp.bundle.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/vendor").Include(
                        "~/ClientApp/dist/vendor.bundle.js"));

@@ -14,7 +14,6 @@ module.exports = {
             'jquery-validation-unobtrusive',
             'Respond.js/dest/respond.min.js',
             'font-awesome/css/font-awesome.css',
-            'modernizr',
             'knockout'
         ]
     },

@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import './appComponent.css';
 import './Site.css';
+import ko from 'knockout';
 //import respond from 'respond.js/dest/respond.min.js';
 //import Modernizr from 'modernizr';
 
@@ -21,6 +22,7 @@ function component() {
     //        console.log('The test failed!');
     //    }
     //});
+   
     return element;
 }
 

@@ -5,7 +5,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: {
-        app: './ClientApp/src/appComponent.js'
+        app: './ClientApp/src/appComponent.js',
+        knockoutapp: './src/app/main.js'
     },
     module: {
         rules: [
@@ -15,6 +16,10 @@ module.exports = {
                     fallback: "style-loader",
                     use: "css-loader"
                 })
+            },
+            {
+                test: /\.html$/,
+                use: 'raw-loader'
             }
         ]
     },
