@@ -1,7 +1,6 @@
 ﻿import $ from 'jquery';
 import _ from 'lodash';
-import './appComponent.css';
-import './Site.css';
+import './app.css';
 import ko from 'knockout';
 //import respond from 'respond.js/dest/respond.min.js';
 //import Modernizr from 'modernizr';

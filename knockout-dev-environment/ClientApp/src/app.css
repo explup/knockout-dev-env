@@ -1,4 +1,17 @@
-﻿body {
+﻿.hello{
+    background-color:orangered;
+}
+
+/* this stylesheet was referenced via a link that had a media attr defined
+it should only apply on screen > 600px */
+#attribute-test {
+    display: block;
+    color: #fff;
+    background: black;
+    text-align: center;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -22,5 +35,6 @@ select,
 textarea {
     max-width: 280px;
 }
+
 
 

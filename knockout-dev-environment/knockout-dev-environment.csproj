@@ -215,9 +215,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClientApp\src\appComponent.css" />
-    <Content Include="ClientApp\src\appComponent.js" />
-    <Content Include="ClientApp\src\Site.css" />
+    <Content Include="ClientApp\src\app.css" />
+    <Content Include="ClientApp\src\app.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -229,10 +228,16 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="src\app\components\gridComponent\gridComponent.css" />
-    <Content Include="src\app\components\gridComponent\gridComponent.html" />
-    <Content Include="src\app\components\gridComponent\gridComponent.js" />
-    <Content Include="src\app\main.js" />
+    <Content Include="src\app\components\filterComponent\filter.css" />
+    <Content Include="src\app\components\filterComponent\filter.html" />
+    <None Include="src\app\components\gridComponent\grid.less" />
+    <Content Include="src\app\components\gridComponent\grid.css" />
+    <Content Include="src\app\components\gridComponent\grid.html" />
+    <Content Include="src\app\components\gridComponent\grid.js" />
+    <TypeScriptCompile Include="src\app\components\filterComponent\filter.ts" />
+    <TypeScriptCompile Include="src\app\module\custom.d.ts" />
+    <TypeScriptCompile Include="src\app\pages\contact.ts" />
+    <Content Include="src\app\pages\index.js" />
     <Content Include="webpack.config.vendor.js" />
     <Content Include="webpack.config.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -281,6 +286,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="src\theme\variables.scss" />
+    <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -303,9 +309,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="src\app\components\gridComponent\gridComponents.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

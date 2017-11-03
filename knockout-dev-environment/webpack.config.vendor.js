@@ -1,7 +1,10 @@
-﻿const path = require('path');
+﻿var isDevBuild = process.argv.indexOf("--env.prod") < 0;
+const path = require('path');
 var webpack = require('webpack');
 //const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -47,7 +50,7 @@ module.exports = {
             modernizr$: path.resolve(__dirname, "path/to/.modernizrrc")
         }     
     },
-
+    devtool: isDevBuild?'inline-source-map':'',
     plugins: [
         new webpack.ProvidePlugin({
             $: "jquery",
@@ -69,7 +72,14 @@ module.exports = {
         //    name: 'common' // Specify the common bundle's name.
         // }),
         //new CleanWebpackPlugin(['ClientApp/dist']),
-    ],
+    ].concat(isDevBuild ? [] 
+                        : [new UglifyJSPlugin({ compress: { warnings: false } }),
+                           new OptimizeCssAssetsPlugin({
+                                                        assetNameRegExp: /\.css$/g,
+                                                        cssProcessor: require('cssnano'),
+                                                        cssProcessorOptions: { discardComments: { removeAll: true } },
+                                                        canPrint: true}) ])
+    ,
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'ClientApp/dist'),
