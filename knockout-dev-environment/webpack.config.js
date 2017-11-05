@@ -9,7 +9,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 module.exports = {
     entry: {
         app: './ClientApp/src/app.js',
-        knockoutapp: './src/app/pages/index.js',
+        knockoutapp: './src/app/pages/index.js'
     },
     module: {
         rules: [

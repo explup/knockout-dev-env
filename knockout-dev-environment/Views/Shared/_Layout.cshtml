@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/ClientApp/dist/css")
-
-
+    @WebpackBundlesFactory.Create().RenderStyle("vendor")
+    @WebpackBundlesFactory.Create().RenderStyle("app")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -37,9 +36,9 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/vendor")
-    @Scripts.Render("~/bundles/app")
+    @WebpackBundlesFactory.Create().RenderScript("vendor")
+    
+    @WebpackBundlesFactory.Create().RenderScript("app")
 
-    @RenderSection("scripts", required: false)
 </body>
 </html>

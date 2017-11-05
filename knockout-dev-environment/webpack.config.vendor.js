@@ -1,7 +1,7 @@
 ﻿var isDevBuild = process.argv.indexOf("--env.prod") < 0;
 const path = require('path');
-var webpack = require('webpack');
-//const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -67,11 +67,11 @@ module.exports = {
             // output.library option above
             name: '[name]_lib'
         }),
-        new ExtractTextPlugin("[name].bundle.css")
+        new ExtractTextPlugin("[name].bundle.css"),
         //new webpack.optimize.CommonsChunkPlugin({
         //    name: 'common' // Specify the common bundle's name.
         // }),
-        //new CleanWebpackPlugin(['ClientApp/dist']),
+        new CleanWebpackPlugin(['ClientApp/dist']),
     ].concat(isDevBuild ? [] 
                         : [new UglifyJSPlugin({ compress: { warnings: false } }),
                            new OptimizeCssAssetsPlugin({
@@ -81,7 +81,7 @@ module.exports = {
                                                         canPrint: true}) ])
     ,
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'ClientApp/dist'),
         // The name of the global variable which the library's
         // require() function will be assigned to
