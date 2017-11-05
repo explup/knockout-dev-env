@@ -67,7 +67,7 @@ module.exports = {
             // output.library option above
             name: '[name]_lib'
         }),
-        new ExtractTextPlugin("[name].bundle.css"),
+        new ExtractTextPlugin("[name].[chunkhash].css"),
         //new webpack.optimize.CommonsChunkPlugin({
         //    name: 'common' // Specify the common bundle's name.
         // }),

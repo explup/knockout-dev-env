@@ -9,8 +9,8 @@ namespace knockout_dev_environment
 {
     public class WebpackBundles
     {
-        private static readonly string relativePathOfClientDist = "ClientApp/dist";
-        private string _virtualPathOfClientDist = $"~/{relativePathOfClientDist}";
+        private static readonly string relativePathOfClientDist = "/ClientApp/dist";
+        private string _virtualPathOfClientDist = $"~{relativePathOfClientDist}";
         // internal for unit tests, at runtime uses HttpContext.Current
         private HttpContextBase _context;
         internal HttpContextBase Context

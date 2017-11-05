@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @WebpackBundlesFactory.Create().RenderStyle("vendor")
     @WebpackBundlesFactory.Create().RenderStyle("app")
+    @WebpackBundlesFactory.Create().RenderStyle("knockoutapp")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -39,6 +40,10 @@
     @WebpackBundlesFactory.Create().RenderScript("vendor")
     
     @WebpackBundlesFactory.Create().RenderScript("app")
+    @WebpackBundlesFactory.Create().RenderScript("knockoutapp")
 
+
+
+   
 </body>
 </html>
