@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
+const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 module.exports = {
     entry: {
         vendor: [
@@ -67,11 +67,12 @@ module.exports = {
             // output.library option above
             name: '[name]_lib'
         }),
-        new ExtractTextPlugin("[name].[chunkhash].css"),
+        new ExtractTextPlugin("[name].[contenthash].css"),
         //new webpack.optimize.CommonsChunkPlugin({
         //    name: 'common' // Specify the common bundle's name.
         // }),
         new CleanWebpackPlugin(['ClientApp/dist']),
+        new CleanObsoleteChunks(),
     ].concat(isDevBuild ? [] 
                         : [new UglifyJSPlugin({ compress: { warnings: false } }),
                            new OptimizeCssAssetsPlugin({

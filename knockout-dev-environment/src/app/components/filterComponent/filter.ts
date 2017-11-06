@@ -12,7 +12,7 @@ export class FilterViewModel {
         //_.padStart("Hello TypeScript!", 20, " ");
          this.rows = ko.observable();
          this.headers = ko.observable();
-         this.helloworld = ko.observable("hello filter 234 sdf in type script");
+         this.helloworld = ko.observable("hello filter in type script");
     }
 }
 
