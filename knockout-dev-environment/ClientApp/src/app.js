@@ -1,5 +1,5 @@
 ﻿import $ from 'jquery';
-//import _ from 'lodash';
+import _ from 'lodash';
 import './app.css';
 import ko from 'knockout';
 //import respond from 'respond.js/dest/respond.min.js';

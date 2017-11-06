@@ -27,27 +27,29 @@ namespace knockout_dev_environment
 
         public IHtmlString RenderScript(string entryName)
         {
-            return this.Render($"{entryName}.*.js", @"<script src = ""{0}/{1}""></script>");
+            return this.Render($"{entryName}.*.js", @"<script src = ""{0}/{1}/{2}""></script>");
         }
         private IHtmlString Render(string searchFilePattern, string outputTagFormat)
         {
-            string physicalDicPath = Context.Server.MapPath(_virtualPathOfClientDist);
+            string physicalDirPath = Context.Server.MapPath(_virtualPathOfClientDist);
+            string[] subDirPaths = Directory.GetDirectories(physicalDirPath);
+            foreach(var subDirPath in subDirPaths)
+            {
+                string filePath = Directory.EnumerateFiles(subDirPath, searchFilePattern).FirstOrDefault();
+                if (File.Exists(filePath))
+                {
+                    DirectoryInfo dirInfo = new DirectoryInfo(subDirPath);
+                    FileInfo fileInfo = new FileInfo(filePath);
+                    IHtmlString htmlString = new HtmlString(string.Format(outputTagFormat, relativePathOfClientDist, dirInfo.Name, fileInfo.Name));
+                    return htmlString;
+                }
+            }
 
-            string filePath = Directory.EnumerateFiles(physicalDicPath, searchFilePattern).FirstOrDefault();
-            if (File.Exists(filePath))
-            {
-                FileInfo fileInfo = new FileInfo(filePath);
-                IHtmlString htmlString = new HtmlString(string.Format(outputTagFormat, relativePathOfClientDist, fileInfo.Name));
-                return htmlString;
-            }
-            else
-            {
-                throw new ApplicationException("can not find webpack bundle file");
-            }
+            throw new ApplicationException("can not find webpack bundle file");
         }
         public IHtmlString RenderStyle(string entryName)
         {
-            return this.Render($"{entryName}.*.css", @"<link type=""text/css"" rel=""stylesheet"" href = ""{0}/{1}""></script>");
+            return this.Render($"{entryName}.*.css", @"<link type=""text/css"" rel=""stylesheet"" href = ""{0}/{1}/{2}""></script>");
         }
     }
 

@@ -291,7 +291,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ClientApp\dist\" />
+    <Folder Include="ClientApp\dist\app\" />
+    <Folder Include="ClientApp\dist\vendor\" />
     <Folder Include="src\assets\i18n\" />
     <Folder Include="src\assets\icon\" />
     <Folder Include="src\assets\img\" />

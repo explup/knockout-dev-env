@@ -1,26 +1,15 @@
-﻿const isDevBuild = process.argv.indexOf("--env.prod") < 0;
+﻿var isDevBuild = process.argv.indexOf("--env.prod") < 0;
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: {
-        vendor: [
-            'jquery',
-            'lodash',
-            'bootstrap',
-            'bootstrap/dist/css/bootstrap.css',
-            'jquery-validation',
-            'jquery-validation-unobtrusive',
-            //'Respond.js/dest/respond.min.js',
-            'font-awesome/css/font-awesome.css',
-            'knockout'
-        ],
         app: './ClientApp/src/app.js',
-        knockoutapp: './src/app/pages/index.js'
+        knockoutapp: './src/app/pages/contact.ts'
     },
     module: {
         rules: [
@@ -72,26 +61,26 @@ module.exports = {
         ]
     },
     resolve: {
-            extensions:[".ts", ".js", ".html"]
+            extensions:[".ts", ".js"]
     },
     devtool: isDevBuild?'inline-source-map':'',
 
     plugins: [
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            "window.jQuery": "jquery"
-        }),
-        //new webpack.DllReferencePlugin({
-        //    context: '.',
-        //    manifest: require('./ClientApp/dist/vendor-manifest.json')
+        //new webpack.ProvidePlugin({
+        //    $: "jquery",
+        //    jQuery: "jquery",
+        //    "window.jQuery": "jquery"
         //}),
+        new webpack.DllReferencePlugin({
+            context: '.',
+            manifest: require('./ClientApp/dist/vendor/vendor-manifest.json')
+        }),
         new ExtractTextPlugin("[name].[chunkhash].css"),
-        new webpack.HashedModuleIdsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor' // Specify the vendor bundle's name.
-         }),
-        new CleanWebpackPlugin(['ClientApp/dist']),
+        //new webpack.HashedModuleIdsPlugin(),
+        //new webpack.optimize.CommonsChunkPlugin({
+        //    name: 'vendor' // Specify the vendor bundle's name.
+        // }),
+        new CleanWebpackPlugin(['ClientApp/dist/app']),
     ].concat(isDevBuild ? [] 
                         : [new UglifyJSPlugin({ compress: { warnings: false } }),
                            new OptimizeCssAssetsPlugin({
@@ -102,6 +91,6 @@ module.exports = {
     ,
     output: {
         filename: '[name].[chunkhash].js',
-        path: path.resolve(__dirname, 'ClientApp/dist')
+        path: path.resolve(__dirname, 'ClientApp/dist/app')
     }
 };

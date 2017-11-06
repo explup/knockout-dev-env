@@ -61,7 +61,7 @@ module.exports = {
             // The path to the manifest file which maps between
             // modules included in a bundle and the internal IDs
             // within that bundle
-            path: 'ClientApp/dist/[name]-manifest.json',
+            path: 'ClientApp/dist/vendor/[name]-manifest.json',
             // The name of the global variable which the library's
             // require function has been assigned to. This must match the
             // output.library option above
@@ -82,7 +82,7 @@ module.exports = {
     ,
     output: {
         filename: '[name].[chunkhash].js',
-        path: path.resolve(__dirname, 'ClientApp/dist'),
+        path: path.resolve(__dirname, 'ClientApp/dist/vendor'),
         // The name of the global variable which the library's
         // require() function will be assigned to
         library: '[name]_lib'
